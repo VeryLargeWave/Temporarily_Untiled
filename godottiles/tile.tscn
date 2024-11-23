@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=3 uid="uid://xe6hau3nwdq"]
+
+[ext_resource type="Script" path="res://tile.gd" id="1_or84r"]
+[ext_resource type="Texture2D" uid="uid://w5d2nnj8cckw" path="res://placeholderBack.png" id="1_pp8h5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5udqb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35hpd"]
+size = Vector2(20, 206)
+
+[node name="Tile" type="RigidBody2D"]
+collision_layer = 7
+collision_mask = 3
+input_pickable = true
+can_sleep = false
+freeze_mode = 1
+script = ExtResource("1_or84r")
+
+[node name="tileSprite" type="Sprite2D" parent="."]
+position = Vector2(-9.53674e-07, 9.53674e-07)
+scale = Vector2(0.3125, 0.3125)
+texture = ExtResource("1_pp8h5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5udqb")
+
+[node name="Emitter" type="CPUParticles2D" parent="."]
+use_parent_material = true
+emitting = false
+amount = 15
+lifetime = 0.1
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(2, 2)
+direction = Vector2(0, -10)
+spread = 173.92
+gravity = Vector2(0, 0)
+initial_velocity_max = 95.68
+angular_velocity_min = -155.68
+angular_velocity_max = 116.76
+linear_accel_min = -29.73
+linear_accel_max = -29.73
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 0.09
+scale_amount_max = 0.12
+
+[node name="ParticleTimer" type="Timer" parent="."]
+
+[node name="GrowTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="GrassTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="KineFreezeTimer" type="Timer" parent="."]
+wait_time = 0.281
+one_shot = true
+autostart = true
+
+[node name="GrassChecker" type="Area2D" parent="."]
+position = Vector2(0, -1)
+collision_mask = 3
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrassChecker"]
+visible = false
+position = Vector2(0, -113)
+shape = SubResource("RectangleShape2D_35hpd")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="timeout" from="GrassTimer" to="." method="_on_grass_timer_timeout"]
+[connection signal="timeout" from="KineFreezeTimer" to="." method="_on_kine_freeze_timer_timeout"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

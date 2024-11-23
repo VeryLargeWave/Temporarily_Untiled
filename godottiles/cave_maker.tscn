@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://1ivby0r44asd"]
+
+[ext_resource type="Script" path="res://cave_maker.gd" id="1_k5v1k"]
+
+[node name="CaveMaker" type="Node2D"]
+script = ExtResource("1_k5v1k")
+
+[node name="Caves" type="Area2D" parent="."]
+collision_layer = 7
+collision_mask = 3
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.477
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

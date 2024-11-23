@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://7qovns724hj3"]
+
+[ext_resource type="Script" path="res://Inventory.gd" id="1_xk6ti"]
+[ext_resource type="Texture2D" uid="uid://b5sumcv5g46q" path="res://inventoryBox2.png" id="2_kw2o0"]
+[ext_resource type="PackedScene" uid="uid://brjfchhrhfopx" path="res://slot.tscn" id="2_nriea"]
+
+[node name="Inventory" type="Panel"]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xk6ti")
+slot = ExtResource("2_nriea")
+
+[node name="InventoryBox" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 387.0
+offset_top = 148.0
+offset_right = 774.0
+offset_bottom = 530.0
+texture = ExtResource("2_kw2o0")
+expand_mode = 1
+
+[node name="GridContainer" type="GridContainer" parent="InventoryBox"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 369.0
+offset_bottom = 364.0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 11

@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://cp5i6sw8c28nv"]
+
+[ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_rxxpj"]
+[ext_resource type="Texture2D" uid="uid://dsf7yedv5gujk" path="res://goober1.png" id="2_j8kg4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bahfk"]
+height = 38.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hqd6b"]
+radius = 426.264
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+floor_max_angle = 1.49749
+script = ExtResource("1_rxxpj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.08616e-07, 0.5)
+scale = Vector2(0.3125, 0.284671)
+texture = ExtResource("2_j8kg4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_bahfk")
+
+[node name="Vision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vision"]
+shape = SubResource("CircleShape2D_hqd6b")
+
+[node name="VisionCheck" type="RayCast2D" parent="."]
+position = Vector2(1, 1)
+target_position = Vector2(122, -1)
+collision_mask = 6
+
+[node name="JumpCheck" type="RayCast2D" parent="."]
+position = Vector2(10, 11)
+target_position = Vector2(19, 0)
+collision_mask = 6
+
+[node name="JumpCheck2" type="RayCast2D" parent="."]
+position = Vector2(-10, 11)
+target_position = Vector2(-19, 0)

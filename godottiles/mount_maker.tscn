@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://x430lr4o0b7a"]
+
+[ext_resource type="Script" path="res://mountainer.gd" id="1_ghs2u"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_ghs2u")

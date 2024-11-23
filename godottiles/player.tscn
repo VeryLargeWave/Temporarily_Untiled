@@ -1,0 +1,112 @@
+[gd_scene load_steps=9 format=3 uid="uid://c5ljs7isdpw85"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_pnacg"]
+[ext_resource type="PackedScene" uid="uid://xe6hau3nwdq" path="res://tile.tscn" id="2_s1ox1"]
+[ext_resource type="Texture2D" uid="uid://mlu344liyntj" path="res://goober2.png" id="3_8lifj"]
+[ext_resource type="Texture2D" uid="uid://w5d2nnj8cckw" path="res://placeholderBack.png" id="4_43wbf"]
+[ext_resource type="PackedScene" uid="uid://7qovns724hj3" path="res://inventory.tscn" id="5_qy0vy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fie66"]
+custom_solver_bias = 0.293
+radius = 2.41106
+height = 10.1083
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xatc6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pyo6i"]
+size = Vector2(5, 5)
+
+[node name="player" type="CharacterBody2D"]
+position = Vector2(-16, -32)
+floor_max_angle = 1.55334
+floor_snap_length = 20.0
+script = ExtResource("1_pnacg")
+spawnedObject = ExtResource("2_s1ox1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(15.5, 32.5)
+scale = Vector2(0.484375, 0.507813)
+texture = ExtResource("3_8lifj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(15.4125, 32.325)
+scale = Vector2(6.465, 6.465)
+shape = SubResource("CapsuleShape2D_fie66")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(16, 66)
+emitting = false
+amount = 300
+lifetime = 0.3
+texture = ExtResource("4_43wbf")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1)
+direction = Vector2(0, -1)
+spread = 122.84
+initial_velocity_min = 81.08
+initial_velocity_max = 337.83
+angular_velocity_min = -369.73
+angular_velocity_max = 467.02
+scale_amount_min = 0.1
+scale_amount_max = 0.3
+
+[node name="StepUpRight" type="RayCast2D" parent="."]
+position = Vector2(24.5, 63)
+rotation = 4.71239
+target_position = Vector2(13, 17.5)
+collision_mask = 2
+
+[node name="NoStepUpRight" type="RayCast2D" parent="."]
+position = Vector2(30.5, 31)
+rotation = 4.71239
+target_position = Vector2(0, 10)
+collision_mask = 2
+
+[node name="NoUpRight" type="RayCast2D" parent="."]
+position = Vector2(20, 0)
+target_position = Vector2(30, 0)
+collision_mask = 2
+
+[node name="StepUpLeft" type="RayCast2D" parent="."]
+position = Vector2(6.5, 63)
+rotation = 1.5708
+target_position = Vector2(-13, 17.5)
+collision_mask = 2
+
+[node name="NoStepUpLeft" type="RayCast2D" parent="."]
+position = Vector2(0.5, 31)
+rotation = 1.5708
+target_position = Vector2(0, 10)
+collision_mask = 2
+
+[node name="NoUpLeft" type="RayCast2D" parent="."]
+position = Vector2(12, 0)
+target_position = Vector2(-30, 0)
+collision_mask = 2
+
+[node name="TileCollider" type="ShapeCast2D" parent="."]
+position = Vector2(98, 31)
+scale = Vector2(0.425, 0.425)
+shape = SubResource("RectangleShape2D_xatc6")
+exclude_parent = false
+target_position = Vector2(0, 0)
+max_results = 1
+collision_mask = 3
+
+[node name="AdjacentTileCollider" type="ShapeCast2D" parent="TileCollider"]
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_pyo6i")
+target_position = Vector2(0, 0)
+max_results = 1
+collision_mask = 3
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Inventory" parent="CanvasLayer" instance=ExtResource("5_qy0vy")]
+
+[node name="Hotbar" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 394.0
+offset_top = 555.0
+offset_right = 770.0
+offset_bottom = 617.0

@@ -1,0 +1,129 @@
+[gd_scene load_steps=10 format=3 uid="uid://cop456exi8dfy"]
+
+[ext_resource type="PackedScene" uid="uid://c5ljs7isdpw85" path="res://player.tscn" id="1_rvb2q"]
+[ext_resource type="PackedScene" uid="uid://crdkb5v7jn2qh" path="res://noise.tscn" id="1_wx6pb"]
+[ext_resource type="PackedScene" uid="uid://xe6hau3nwdq" path="res://tile.tscn" id="3_qp63f"]
+[ext_resource type="PackedScene" uid="uid://d2ugo86vseve4" path="res://builder.tscn" id="4_cxlmw"]
+[ext_resource type="Texture2D" uid="uid://bhxca6pkwi0ii" path="res://tileDirt.png" id="4_uub32"]
+[ext_resource type="PackedScene" uid="uid://dm3qqta8hgop2" path="res://item.tscn" id="6_3vm7h"]
+[ext_resource type="PackedScene" uid="uid://1ivby0r44asd" path="res://cave_maker.tscn" id="7_lka5r"]
+[ext_resource type="PackedScene" uid="uid://x430lr4o0b7a" path="res://mount_maker.tscn" id="8_bl4tk"]
+[ext_resource type="PackedScene" uid="uid://cp5i6sw8c28nv" path="res://enemy.tscn" id="9_um125"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Noise" parent="." instance=ExtResource("1_wx6pb")]
+position = Vector2(0, -239)
+
+[node name="player" parent="." instance=ExtResource("1_rvb2q")]
+position = Vector2(-16, -109)
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-7, -24)
+
+[node name="Builder" parent="." instance=ExtResource("4_cxlmw")]
+position = Vector2(-1456, 5)
+texture = ExtResource("4_uub32")
+
+[node name="NodeWorld2D" type="Node2D" parent="."]
+position = Vector2(0, -239)
+
+[node name="Tile12" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(-394, -60)
+
+[node name="Tile21" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(214, 3)
+
+[node name="Tile22" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(220, -124)
+
+[node name="Tile23" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(288, -91)
+
+[node name="Tile24" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(183, -58)
+
+[node name="Tile25" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(153, 47)
+
+[node name="Tile26" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(258, 30)
+
+[node name="Tile27" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(291, -39)
+
+[node name="Tile28" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(220, 59)
+
+[node name="Tile29" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(284, 128)
+
+[node name="Tile13" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(-388, -187)
+
+[node name="Tile14" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(-320, -154)
+
+[node name="Tile15" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(-425, -121)
+
+[node name="Tile16" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(-455, -16)
+
+[node name="Tile17" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(-350, -33)
+
+[node name="Tile18" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(-317, -102)
+
+[node name="Tile19" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(-388, -4)
+
+[node name="Tile20" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(-324, 65)
+
+[node name="Tile3" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(-192, 45)
+
+[node name="Tile4" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(-186, -82)
+
+[node name="Tile5" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(-118, -49)
+
+[node name="Tile6" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(-223, -16)
+
+[node name="Tile7" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(-253, 89)
+
+[node name="Tile8" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(-148, 72)
+
+[node name="Tile9" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(-115, 3)
+
+[node name="Tile10" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(-186, 101)
+
+[node name="Tile11" parent="NodeWorld2D" instance=ExtResource("3_qp63f")]
+position = Vector2(-122, 170)
+
+[node name="Item" parent="." instance=ExtResource("6_3vm7h")]
+position = Vector2(128, -131)
+itemType = "weapon"
+itemName = "gooberson"
+itemDesc = "gooberson the great"
+itemTier = "legendary"
+
+[node name="CaveMaker" parent="." instance=ExtResource("7_lka5r")]
+position = Vector2(-26, 82)
+
+[node name="Node2D" parent="." instance=ExtResource("8_bl4tk")]
+process_mode = 4
+position = Vector2(516, -404)
+
+[node name="Enemy" parent="." instance=ExtResource("9_um125")]
+position = Vector2(-541, -86)
